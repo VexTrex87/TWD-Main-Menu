@@ -9,6 +9,7 @@ local SWITCH_DISABLED_POS = UDim2.new(0.339, 0, 0.5, 0)
 local SWITCH_DISABLED_COLOR = Color3.fromRGB(255, 0, 0)
 local SWITCH_ENABLED_POS = UDim2.new(1.179, 0, 0.5, 0)
 local SWITCH_ENABLED_COLOR = Color3.fromRGB(35, 255, 68)
+local TWEEN_INFO = {Enum.EasingDirection.In, Enum.EasingStyle.Linear, 0.2, true}
 
 local remotes = game.ReplicatedStorage.Remotes.MainMenu
 local characters = remotes.GetCharacters:InvokeServer()
@@ -28,15 +29,15 @@ local selectedChar
 
 local function buttonClicked(button)
     music.Click:Play()
-    if button:IsAncestorOf(creditsUI) then
+    if button:IsDescendantOf(creditsUI) then
             creditsUI.Visible, mainMenuUI.Visible = false, true
-    elseif button:IsAncestorOf(settingsUI) then
+    elseif button:IsDescendantOf(settingsUI) then
         if button.Name == "BackButton" then
             settingsUI.Visible, mainMenuUI.Visible = false, true
         else
-            button.Active.Value = not button.Active.Value
-            button.Switch:TweenPosition(button.Active.Value and SWITCH_ENABLED_POS or SWITCH_DISABLED_POS)
-            button.Switch.ImageColor3 = button.Active.Value and SWITCH_ENABLED_COLOR or SWITCH_DISABLED_COLOR
+            button.IsActive.Value = not button.IsActive.Value
+            button.Switch.Round:TweenPosition(button.IsActive.Value and SWITCH_ENABLED_POS or SWITCH_DISABLED_POS, table.unpack(TWEEN_INFO))
+            button.Switch.Round.ImageColor3 = button.IsActive.Value and SWITCH_ENABLED_COLOR or SWITCH_DISABLED_COLOR
 
             -- disable core UI's
             pcall(function()
@@ -53,14 +54,14 @@ local function buttonClicked(button)
                 end
             end)
         end
-    elseif button:IsAncestorOf(characterUI) then
+    elseif button:IsDescendantOf(characterUI) then
         if button.Name == "BackButton" then
             characterUI.Visible, mainMenuUI.Visible = false, true
         elseif button.Parent.Parent == characterUI.Frame then
             -- set selected char temp var to button name
             selectedChar = button.Name
         end
-    elseif button:IsAncestorOf(mainMenuUI) then
+    elseif button:IsDescendantOf(mainMenuUI) then
         if button.Parent.Name == "Spawn" then
             -- set char on server
             local newChar = remotes.ChooseCharacter:InvokeServer(selectedChar)
@@ -96,7 +97,6 @@ local function initClickEvents()
     for _,v in pairs(UI:GetDescendants()) do
         if v:IsA("TextButton") then
             v.MouseButton1Click:Connect(function()
-                print(v:GetFullName())
                 buttonClicked(v)
             end)
         end
