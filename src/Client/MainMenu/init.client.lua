@@ -41,15 +41,15 @@ local function buttonClicked(button)
 
             -- disable core UI's
             pcall(function()
-                if button.Name == "HideChat" then
+                if button.Parent.Name == "HideChat" then
                     game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, false)
-                elseif button.Name == "HideBackpack" then
+                elseif button.Parent.Name == "HideBackpack" then
                     game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, false)
-                elseif button.Name == "HideEmotes" then
+                elseif button.Parent.Name == "HideEmotes" then
                     game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.EmotesMenu, false)
-                elseif button.Name == "HideLeaderboard" then
+                elseif button.Parent.Name == "HideLeaderboard" then
                     game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, false)
-                elseif button.Name == "HideTopBar" then
+                elseif button.Parent.Name == "HideTopBar" then
                     game.StarterGui:SetCore("TopbarEnabled", false)
                 end
             end)
@@ -59,7 +59,7 @@ local function buttonClicked(button)
             characterUI.Visible, mainMenuUI.Visible = false, true
         elseif button.Parent.Parent == characterUI.Frame then
             -- set selected char temp var to button name
-            selectedChar = button.Name
+            selectedChar = button.Text
         end
     elseif button:IsDescendantOf(mainMenuUI) then
         if button.Parent.Name == "Spawn" then
