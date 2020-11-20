@@ -59,15 +59,13 @@ local function buttonClicked(button)
             characterUI.Visible, mainMenuUI.Visible = false, true
         elseif button.Parent.Parent == characterUI.Frame then
             -- set selected char temp var to button name
-            selectedChar = button.Text
+            if button.Text ~= selectedChar then
+                selectedChar = button.Text
+                remotes.ChooseCharacter:FireServer(selectedChar)
+            end
         end
     elseif button:IsDescendantOf(mainMenuUI) then
         if button.Parent.Name == "Spawn" then
-            -- set char on server
-            local newChar = remotes.ChooseCharacter:InvokeServer(selectedChar)
-            -- set camera to new char
-            camera.CameraType = Enum.CameraType.Follow
-            camera.CameraSubject = newChar.Humanoid
             -- delete music, UI, & script
             music.MainMenu:Pause()
             UI:Destroy()
