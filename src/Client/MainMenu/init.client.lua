@@ -29,24 +29,25 @@ local function onButtonClicked(button)
     for _,v in pairs({mainMenuUI, characterUI, settingsUI, creditsUI}) do
         if button:IsDescendantOf(v) then
             uiControllers[v.Name](button)
+            break
         end
     end
 end
 
 local function createCharButtons()
     -- creates the buttons for each character
-    local temp = characterUI.Frame.UIGridLayout.Template
+    local temp = characterUI.BottomBar.UIGridLayout.Template
     for name, cost in pairs(characters) do
         local button = temp:Clone()
         button.Name, button.TextLabel.Text = name, name
-        button.Parent = characterUI.Frame
+        button.Parent = characterUI.BottomBar
     end
 end
 
 local function initClickEvents()
     -- event listener for button clicked
     for _,v in pairs(UI:GetDescendants()) do
-        if v:IsA("TextButton") then
+        if v:IsA("ImageButton") then
             v.MouseButton1Click:Connect(function()
                 onButtonClicked(v)
             end)

@@ -7,12 +7,12 @@ local characterUI = UI:WaitForChild("Character")
 local selectedChar
 
 return function(button)
-    if button.Name == "BackButton" then
+    if button.Name == "Back" then
         characterUI.Visible, mainMenuUI.Visible = false, true
-    elseif button.Parent.Parent == characterUI.Frame then
+    elseif button.Parent == characterUI.BottomBar then
         -- set selected char temp var to button name
-        if button.Text ~= selectedChar then
-            selectedChar = button.Text
+        if button.Name ~= selectedChar then
+            selectedChar = button.Name
             remotes.ChooseCharacter:FireServer(selectedChar)
         end
     end
