@@ -34,7 +34,7 @@ local function onChooseCharacterInvoked(p, charName)
     cloneChar(p.Character, charStorage[charName])
 end
 
-local function onGetCharactersInvoked()
+local function getCharacters()
     -- returns all chars in a dictionary
     local charInfo = {}
     for _,char in pairs(charStorage:GetChildren()) do
@@ -64,4 +64,4 @@ game.Players.PlayerAdded:Connect(function(p)
 end)
 
 remotes.ChooseCharacter.OnServerEvent:Connect(onChooseCharacterInvoked)
-remotes.GetCharacters.OnServerInvoke = onGetCharactersInvoked
+remotes.GetCharacters.OnServerInvoke = getCharacters
