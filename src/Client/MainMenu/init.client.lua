@@ -5,15 +5,14 @@ end
 
 -- // VARIABLES \\ --
 
-local SWITCH_DISABLED_POS = UDim2.new(0.339, 0, 0.5, 0)
-local SWITCH_DISABLED_COLOR = Color3.fromRGB(255, 0, 0)
-local SWITCH_ENABLED_POS = UDim2.new(1.179, 0, 0.5, 0)
-local SWITCH_ENABLED_COLOR = Color3.fromRGB(35, 255, 68)
+local SWITCH_DISABLED_POS = UDim2.new(0, 0, 0, 0)
+local SWITCH_DISABLED_COLOR = Color3.fromRGB(137, 61, 72)
+local SWITCH_ENABLED_POS = UDim2.new(0.4, 0, 0, 0)
+local SWITCH_ENABLED_COLOR = Color3.fromRGB(80, 107, 67)
 local TWEEN_INFO = {Enum.EasingDirection.In, Enum.EasingStyle.Linear, 0.2, true}
 
 local remotes = game.ReplicatedStorage.Remotes.MainMenu
 local characters = remotes.GetCharacters:InvokeServer()
-local camera = workspace.CurrentCamera
 local music = game.ReplicatedStorage.Music.MainMenu
 local p = game.Players.LocalPlayer
 
