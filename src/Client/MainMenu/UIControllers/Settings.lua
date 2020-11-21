@@ -9,8 +9,8 @@ return function(button)
         settingsUI.Visible, mainMenuUI.Visible = false, true
     else
         button.IsActive.Value = not button.IsActive.Value
-        button.Switch:TweenPosition(button.IsActive.Value and Settings.switchEnabledPos or Settings.switchDisabledPos, table.unpack(Settings.switchTweenInfo))
-        button.Switch.BackgroundColor3 = button.IsActive.Value and Settings.switchEnabledColor or Settings.switchDisabledColor
+        button.Switch:TweenPosition(button.IsActive.Value and Settings.switch.enabledPos or Settings.switch.disabledPos, table.unpack(Settings.switch.tweenInfo))
+        button.Switch.BackgroundColor3 = button.IsActive.Value and Settings.switch.enabledColor or Settings.switch.disabledColor
 
         -- disable core UI's
         pcall(function()

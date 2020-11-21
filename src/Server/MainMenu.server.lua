@@ -1,4 +1,4 @@
-local EQUIP_CHAR_ON_RESPAWN_DELAY = 0.5
+local EQUIP_CHAR_ON_RESPAWN_DELAY = 0.1
 local remotes = game.ReplicatedStorage.Remotes.MainMenu
 local charStorage = game.ServerStorage.Characters
 

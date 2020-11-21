@@ -5,7 +5,7 @@ end
 
 -- // VARIABLES \\ --
 
-local core = require(game.ReplicatedStorage.Core)
+local core = require(game.ReplicatedStorage.Modules.Core)
 local loadModules = core("loadModules")
 local uiControllers = loadModules(script.UIControllers:GetChildren())
 local camera = require(script.Controllers:WaitForChild("Camera"))
