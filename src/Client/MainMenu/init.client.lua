@@ -7,7 +7,7 @@ end
 
 local core = require(game.ReplicatedStorage.Core)
 local loadModules = core("loadModules")
-local uiControllers = loadModules(script:GetChildren())
+local uiControllers = loadModules(script.UIController:GetChildren())
 
 local remotes = game.ReplicatedStorage.Remotes.MainMenu
 local characters = remotes.GetCharacters:InvokeServer()
@@ -28,7 +28,7 @@ local function onButtonClicked(button)
     -- finds the correct module to run according to the button
     for _,v in pairs({mainMenuUI, characterUI, settingsUI, creditsUI}) do
         if button:IsDescendantOf(v) then
-            uiControllers[v.Name .. "UI"](button)
+            uiControllers[v.Name](button)
         end
     end
 end
