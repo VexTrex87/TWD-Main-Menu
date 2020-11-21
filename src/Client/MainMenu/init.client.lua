@@ -7,11 +7,10 @@ end
 
 local core = require(game.ReplicatedStorage.Core)
 local loadModules = core("loadModules")
-local uiControllers = loadModules(script.UIController:GetChildren())
-local camera = require(script:WaitForChild("Camera"))
+local uiControllers = loadModules(script.UIControllers:GetChildren())
+local camera = require(script.Controllers:WaitForChild("Camera"))
 
-local remotes = game.ReplicatedStorage.Remotes.MainMenu
-local characters = remotes.GetCharacters:InvokeServer()
+local characters = game.ReplicatedStorage.Characters
 local music = game.ReplicatedStorage.Music.MainMenu
 local p = game.Players.LocalPlayer
 
@@ -38,9 +37,9 @@ end
 local function createCharButtons()
     -- creates the buttons for each character
     local temp = characterUI.BottomBar.UIGridLayout.Template
-    for name, cost in pairs(characters) do
+    for _,char in pairs(characters:GetChildren()) do
         local button = temp:Clone()
-        button.Name, button.TextLabel.Text = name, name
+        button.Name, button.TextLabel.Text = char.Name, char.Name
         button.Parent = characterUI.BottomBar
     end
 end

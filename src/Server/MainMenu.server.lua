@@ -34,15 +34,6 @@ local function onChooseCharacterInvoked(p, charName)
     cloneChar(p.Character, charStorage[charName])
 end
 
-local function getCharacters()
-    -- returns all chars in a dictionary
-    local charInfo = {}
-    for _,char in pairs(charStorage:GetChildren()) do
-        charInfo[char.Name] = 0
-    end
-    return charInfo
-end
-
 game.Players.PlayerAdded:Connect(function(p)
     -- create stats folder
     local stats = Instance.new("Folder")
@@ -64,4 +55,3 @@ game.Players.PlayerAdded:Connect(function(p)
 end)
 
 remotes.ChooseCharacter.OnServerEvent:Connect(onChooseCharacterInvoked)
-remotes.GetCharacters.OnServerInvoke = getCharacters
