@@ -8,6 +8,7 @@ end
 local core = require(game.ReplicatedStorage.Core)
 local loadModules = core("loadModules")
 local uiControllers = loadModules(script.UIController:GetChildren())
+local camera = require(script:WaitForChild("Camera"))
 
 local remotes = game.ReplicatedStorage.Remotes.MainMenu
 local characters = remotes.GetCharacters:InvokeServer()
@@ -64,6 +65,7 @@ end
 
 -- // COMPILE \\ --
 
+camera.startCamera()
 initUIDefaults()
 createCharButtons()
 initClickEvents()
